@@ -8,8 +8,8 @@ export default function AddColorForm({ onNewColor = f => f }) {
     const submit = e => {
         e.preventDefault();
         onNewColor(titleProps.value, colorProps.value);
-        resetTitle("");
-        resetColor("");
+        resetTitle();
+        resetColor();
     };
 
     return (
