@@ -1,38 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-function GitHubUser({ login }) {
-    const [data, setData] = useState();
-    const [error, setError] = useState();
-    const [loding, setLoding] = useState(false);
+const tahoe_peaks = [
+    { name: "Freel Peak", elevation: 10891 },
+    { name: "Monument Peak", elevation: 10067 },
+    { name: "Pyramid Peak", elevation: 9983 },
+    { name: "Mt. Tallac", elevation: 9732 }
+]
 
-    useEffect(() => {
-        if (!login) return;
-        setLoding(true);
-        fetch(`https://api.github.com/users/${login}`)
-          .then(data => data.json())
-          .then(setData)
-          .then(() => setLoding(false))
-          .catch(setError);
-      }, [login]);
-
-    if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
-    if (loding) return <h1>loding...</h1>
-    if (!data) return null
-
-    console.log(data);
-
-    return (
-        <div className="githubuser">
-            <img src={data.avatar_url} alt={data.login} style={{ width: 200 }} />
-            <div>
-                <h1>{data.login}</h1>
-                {data.name && <p>{data.name}</p>}
-                {data.location && <p>{data.location}</p>}
-            </div>
-        </div>
+function List({ data = [], renderItem, renderEmpty }) {
+    return !data.length ? (
+        renderEmpty
+    ) : (
+        <ul>
+            {data.map((item, i) => (
+                <li key={i}>{renderItem(item)}</li>
+            ))}
+        </ul>
     );
 }
 
 export default function App() {
-    return <GitHubUser login="14-shump" />
+    return (
+        <List
+            data={tahoe_peaks}
+            renderEmpty={<p>this list is empty</p>}
+            renderItem={item => (
+                <>
+                    {item.name} - {item.elevation.toLocaleString()}
+                </>
+            )}
+        />
+    );
 }
