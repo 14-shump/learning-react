@@ -1,15 +1,15 @@
 import React from "react";
-import Fetch from "./Fetch.js";
-import RepoMenu from "./RepoMenu.js";
+import Fetch from "./Fetch";
+import RepoMenu from "./RepoMenu";
 
-export default function UserRepositories({ login, onSelect = f => f }) {
+export default function UserRepositories({ login, selectedRepo, onSelect = f => f }) {
     return (
         <Fetch
             uri={`https://api.github.com/users/${login}/repos`}
             renderSuccess={({ data }) => (
                 <RepoMenu
-                    login={login}
                     repositories={data}
+                    selected={selectedRepo}
                     onSelect={onSelect}
                 />
             )}
