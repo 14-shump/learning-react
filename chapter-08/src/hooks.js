@@ -21,7 +21,7 @@ export function useFetch(uri) {
     };
 }
 
-export const useIterator = (items = [],initialValue) => {
+export const useIterator = (items = [], initialValue = 0) => {
     const [i, setIndex] = useState(initialValue);
 
     const prev = useCallback(() => {
