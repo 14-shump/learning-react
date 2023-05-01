@@ -8,6 +8,7 @@ export default function UserRepositories({ login, onSelect = f => f }) {
             uri={`https://api.github.com/users/${login}/repos`}
             renderSuccess={({ data }) => (
                 <RepoMenu
+                    login={login}
                     repositories={data}
                     onSelect={onSelect}
                 />
