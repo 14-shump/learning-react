@@ -1,34 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
-import GitHubUser from "./GitHubUser";
-import UserRepositories from "./UserRepositories";
-import RepositoryReadme from "./RepositoryReadme";
+import { GraphQLClient } from "graphql-request";
+
+const query = `
+  query findRepos($login:String!) {
+    user(login:$login) {
+      login
+      name
+      location
+      avatar_url: avatarUrl
+      repositories(first:100) {
+        totalCount
+        nodes {
+          name
+        }
+      }
+    }
+  }
+`;
+
+const client = new GraphQLClient( "https://api.github.com/graphql", {
+  headers: {
+    Authorization: `Bearer <PERSONAL ACCESS TOKEN>`
+  }
+});
+
+function UserDetails(data) {
+  return (
+    <div className="githubUser">
+      <img src={data.avatar_url} alt={data.login} style={{ width: 200 }} />
+      <div>
+        <h1>{data.login}</h1>
+        {data.name && <p>{data.name}</p>}
+        {data.location && <p>{data.location}</p>}
+      </div>
+    </div>
+  );
+}
+
+function List({ data = [], renderItem, renderEmpty }) {
+  return !data.length ? (
+    renderEmpty
+  ) : (
+    <ul>
+      {data.map((item, i) => (
+        <li key={i}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
+}
 
 export default function App() {
-    const [login, setLogin] = useState("moonhighway");
-    const [repo, setRepo] = useState("learning-react");
+  const [login, setLogin] = useState("14-shump");
+  const [userData, setUserData] = useState();
 
-    const handleSearch = login => {
-        if (login) return setLogin(login);
-        setLogin("");
-        setRepo("");
-    };
+  useEffect(() => {
+    client
+    .request(query, { login })
+    .then(({ user }) => user)
+    .then(setUserData)
+    .catch(console.error);
+  }, [client, query, login]);
 
-    if (!login)
-        return (
-            <SearchForm value={login} onSearch={handleSearch} />
-        );
-
-    return (
-        <>
-            <SearchForm value={login} onSearch={handleSearch} />
-            <GitHubUser login={login} />
-            <UserRepositories
-                login={login}
-                selectedRepo={repo}
-                onSelect={setRepo}
-            />
-            <RepositoryReadme login={login} repo={repo} />
-        </>
-    );
+  if (!userData) return <p>loading...</p>;
+  console.log(userData);
+  return (
+    <>
+      <SearchForm value={login} onSearch={setLogin} />
+      <UserDetails {...userData} />
+      <List
+        data={userData.repositories.nodes}
+        renderItem={repo => <span>{repo.name}</span>}
+      />
+    </>
+  );
 }

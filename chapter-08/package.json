@@ -1,11 +1,12 @@
 {
-  "name": "14-multireq",
+  "name": "16-graphql",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "graphql": "^15.8.0",
+    "graphql-request": "^3.7.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-markdown": "^4.3.1",
     "react-scripts": "3.0.1"
   },
   "scripts": {
