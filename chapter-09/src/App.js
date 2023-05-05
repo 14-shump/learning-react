@@ -1,27 +1,13 @@
-import SiteLayout from './SiteLayout';
-import ErrorBoundary, { BreakThings } from "./ErrorBoundary";
+import React, { useState, lazy } from "react";
+import Agreement from "./Agreement";
 
-const Callout = ({ children }) => (
-    <div className="callout">{children}</div>
-);
+const Main = lazy(() => import("./Main"));
 
 export default function App() {
-    return (
-        <SiteLayout
-            menu={
-                    <ErrorBoundary>
-                        <p>Menu</p>
-                    </ErrorBoundary>
-                }
-        >
-            <ErrorBoundary>
-                <Callout>Callout</Callout>
-            </ErrorBoundary>
-            <ErrorBoundary> 
-                <h1>Contents</h1>
-                <p>this is the main part of the example layout</p>
-                <BreakThings/>
-            </ErrorBoundary>
-        </SiteLayout>
-    );
+    const [agree, setAgree] = useState(false);
+
+    if (!agree)
+        return <Agreement onAgree={() => setAgree(true)} />;
+
+    return <Main />;
 }
