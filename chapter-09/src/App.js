@@ -1,13 +1,23 @@
-import React, { useState, lazy } from "react";
-import Agreement from "./Agreement";
+import React, { Suspense } from "react";
+import ErrorBoundary from "./ErrorBoundary";
+import GridLoader from "react-spinners/GridLoader";
 
-const Main = lazy(() => import("./Main"));
+// const loadStatus = () => "success - ready";
+const loadStatus = () => {
+    throw new Promise(resolves => null);
+};
+
+function Status() {
+    const status = loadStatus();
+    return <h1>status: {status}</h1>
+}
 
 export default function App() {
-    const [agree, setAgree] = useState(false);
-
-    if (!agree)
-        return <Agreement onAgree={() => setAgree(true)} />;
-
-    return <Main />;
+    return (
+        <Suspense fallback={<GridLoader />}>
+            <ErrorBoundary>
+                <Status />
+            </ErrorBoundary>
+        </Suspense>
+    );
 }
