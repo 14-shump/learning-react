@@ -17,6 +17,10 @@ export default class ErrorBoundary extends Component {
     }
 }
 
+export const BreakThings = () => {
+    throw new Error("We intentionally broke something");
+}
+
 function ErrorScreen({ error }) {
     return (
         <div className="error">

@@ -2,9 +2,9 @@ import React, { Suspense } from "react";
 import ErrorBoundary from "./ErrorBoundary";
 import GridLoader from "react-spinners/GridLoader";
 
+// const loadStatus = () => "success - ready";
 const loadStatus = () => {
-    console.log("load status");
-    throw new Promise(resolves => setTimeout(resolves, 3000));
+    throw new Promise(resolves => null);
 };
 
 function Status() {
