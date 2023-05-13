@@ -1,19 +1,24 @@
 {
-  "name": "testing",
+  "name": "my-type",
   "version": "0.1.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
-      "name": "testing",
+      "name": "my-type",
       "version": "0.1.0",
       "dependencies": {
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.2.1",
+        "@types/jest": "^24.9.1",
+        "@types/node": "^12.12.44",
+        "@types/react": "^16.9.35",
+        "@types/react-dom": "^16.9.8",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "react-scripts": "3.4.1"
+        "react-scripts": "3.4.1",
+        "typescript": "^3.7.5"
       }
     },
     "node_modules/@babel/code-frame": {
@@ -2077,6 +2082,14 @@
         "@types/istanbul-lib-report": "*"
       }
     },
+    "node_modules/@types/jest": {
+      "version": "24.9.1",
+      "resolved": "https://registry.npmjs.org/@types/jest/-/jest-24.9.1.tgz",
+      "integrity": "sha512-Fb38HkXSVA4L8fGKEZ6le5bB8r6MRWlOCZbVuWZcmOMSCd2wCYOwN1ibj8daIoV9naq7aaOZjrLCoCMptKU/4Q==",
+      "dependencies": {
+        "jest-diff": "^24.3.0"
+      }
+    },
     "node_modules/@types/json-schema": {
       "version": "7.0.4",
       "resolved": "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.4.tgz",
@@ -2088,9 +2101,9 @@
       "integrity": "sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA=="
     },
     "node_modules/@types/node": {
-      "version": "14.0.11",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.0.11.tgz",
-      "integrity": "sha512-lCvvI24L21ZVeIiyIUHZ5Oflv1hhHQ5E1S25IRlKIXaRkVgmXpJMI3wUJkmym2bTbCe+WoIibQnMVAU3FguaOg=="
+      "version": "12.12.44",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-12.12.44.tgz",
+      "integrity": "sha512-jM6QVv0Sm5d3nW+nUD5jSzPcO6oPqboitSNcwgBay9hifVq/Rauq1PYnROnsmuw45JMBiTnsPAno0bKu2e2xrg=="
     },
     "node_modules/@types/parse-json": {
       "version": "4.0.0",
@@ -15678,6 +15691,18 @@
       "version": "0.0.6",
       "resolved": "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz",
       "integrity": "sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c="
+    },
+    "node_modules/typescript": {
+      "version": "3.7.5",
+      "resolved": "https://registry.npmjs.org/typescript/-/typescript-3.7.5.tgz",
+      "integrity": "sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==",
+      "bin": {
+        "tsc": "bin/tsc",
+        "tsserver": "bin/tsserver"
+      },
+      "engines": {
+        "node": ">=4.2.0"
+      }
     },
     "node_modules/unicode-canonical-property-names-ecmascript": {
       "version": "1.0.4",
