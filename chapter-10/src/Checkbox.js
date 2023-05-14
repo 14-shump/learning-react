@@ -14,6 +14,7 @@ export function Checkbox() {
           type="checkbox"
           value={checked}
           onChange={setChecked}
+          data-testid="checkbox"
         />
       </label>
     </>
