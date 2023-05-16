@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import {
   Home,
   About,
@@ -9,17 +9,15 @@ import {
 } from "./pages";
 
 function App() {
-  return (
-    <div>
-      <Routes>
-        <Route Path="/" element={<Home />} />
-        <Route Path="/about" element={<About />} />
-        <Route Path="/events" element={<Events />} />
-        <Route Path="/products" element={<Products />} />
-        <Route Path="/contact" element={<Contact />} />
-      </Routes>
-    </div>
-  );
+  let element = useRoutes([
+    { path: "/", element: <Home /> },
+    { path: "/about", element: <About /> },
+    { path: "/events", element: <Events /> },
+    { path: "/products", element: <Products /> },
+    { path: "/contact", element: <Contact /> }
+  ]);
+
+  return element;
 }
 
 export default App;
