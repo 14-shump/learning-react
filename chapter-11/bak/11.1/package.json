@@ -1,5 +1,5 @@
 {
-  "name": "color-organizer",
+  "name": "company-website",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,9 +8,8 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-icons": "^3.9.0",
-    "react-router": "^6.0.0-alpha.2",
-    "react-router-dom": "^6.0.0-alpha.2",
+    "react-router": "^6.11.1",
+    "react-router-dom": "^6.11.1",
     "react-scripts": "3.4.0"
   },
   "scripts": {
